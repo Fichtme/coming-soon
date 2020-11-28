@@ -1,0 +1,13 @@
+version: "3.7"
+
+services:
+  nginx:
+    image: ${CI_REGISTRY_IMAGE}/nginx:latest #${CI_COMMIT_SHA}
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile
+      target: nginx
+    restart: always
+    expose:
+      - 80
+

@@ -1,0 +1,9 @@
+version: "3.7"
+
+services:
+  nginx:
+    image: welcome-development-nginx
+    ports:
+      - 8080:80
+    volumes:
+      - ./app:/srv
