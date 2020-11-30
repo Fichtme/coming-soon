@@ -2,7 +2,7 @@ version: "3.7"
 
 services:
   nginx:
-    image: ${CI_REGISTRY_IMAGE}/nginx:latest #${CI_COMMIT_SHA}
+    image: coming-soon/nginx:latest
     build:
       context: .
       dockerfile: .docker/Dockerfile
@@ -10,4 +10,16 @@ services:
     restart: always
     expose:
       - 80
+      - 443
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.dev-releases-backend.rule=Host(`fichtme.nl`)"
+      - "traefik.http.routers.dev-releases-backend.entrypoints=websecure"
+      - "traefik.http.routers.dev-releases-backend.tls.certresolver=fichtme-resolver"
+    networks:
+      - traefik
 
+networks:
+  traefik:
+    external:
+      name: "traefik"
