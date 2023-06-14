@@ -13,13 +13,6 @@ services:
       - 443
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.dev-releases-backend.rule=Host(`fichtme.nl`)"
+      - "traefik.http.routers.dev-releases-backend.rule=Host(`krijnen.dev`)"
       - "traefik.http.routers.dev-releases-backend.entrypoints=websecure"
-      - "traefik.http.routers.dev-releases-backend.tls.certresolver=fichtme-resolver"
-    networks:
-      - traefik
-
-networks:
-  traefik:
-    external:
-      name: "traefik"
+      - "traefik.http.routers.dev-releases-backend.tls.certresolver=leresolver"
